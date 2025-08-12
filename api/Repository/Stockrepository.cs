@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using api.Data;
 using api.DTOs.Stock;
+using api.Helpers;
 using api.Interface;
 using api.Models;
 using Microsoft.EntityFrameworkCore;
@@ -19,9 +20,30 @@ namespace api.Repository
             _applicationDBContext = applicationDBContext;
         }
 
-        public async Task<List<Stock>> GetAllAsync()
+        public async Task<List<Stock>> GetAllAsync(QueryObject queryObject)
         {
-            return await _applicationDBContext.Stocks.Include(c => c.Comments).ToListAsync();
+            var stocks = _applicationDBContext.Stocks.Include(c => c.Comments).AsQueryable();
+            if (!string.IsNullOrWhiteSpace(queryObject.Company))
+            {
+                stocks = stocks.Where(s => s.Company.Contains(queryObject.Company));
+            }
+
+            if (!string.IsNullOrWhiteSpace(queryObject.Symbol))
+            {
+                stocks = stocks.Where(s => s.Symbol.Contains(queryObject.Symbol));
+            }
+
+            if (!string.IsNullOrWhiteSpace(queryObject.OrderBy))
+            {
+                if (queryObject.OrderBy.Equals("Symbol", StringComparison.OrdinalIgnoreCase))
+                {
+                    stocks = queryObject.IsDecsending ? stocks.OrderByDescending(s => s.Symbol) : stocks.OrderBy(s => s.Symbol);
+                }
+            }
+
+            var skipNumber = (queryObject.PageNumber - 1) * queryObject.PageSize;
+
+            return await stocks.Skip(skipNumber).Take(queryObject.PageSize).ToListAsync();
         }
 
         public async Task<Stock?> GetByIdAsync(int id)

@@ -14,12 +14,10 @@ namespace api.Repository
     public class CommentRepository : ICommentRepository
     {
         private readonly ApplicationDBContext _context;
-        private readonly IStockRepository _stockContext;
 
         public CommentRepository(ApplicationDBContext context, IStockRepository stockContext)
         {
             _context = context;
-            _stockContext = stockContext;
         }
 
         public async Task<List<Comment>> GetAllAsync()
@@ -56,6 +54,20 @@ namespace api.Repository
 
             comment.Content = commentModel.Content;
             comment.Title = commentModel.Title;
+            await _context.SaveChangesAsync();
+
+            return comment;
+        }
+
+        public async Task<Comment?> DeleteAsync(int id)
+        {
+            var comment = await _context.Comments.FindAsync(id);
+            if (comment == null)
+            {
+                return null;
+            }
+
+            _context.Remove(comment);
             await _context.SaveChangesAsync();
 
             return comment;

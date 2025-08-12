@@ -26,7 +26,7 @@ namespace api.Controllers
 
         [HttpGet]
         public async Task<IActionResult> GetAllComment()
-        {
+         {
             var comments = await _commentRepo.GetAllAsync();
             var commentsDto = comments.Select(x => x.ToCommnetDto());
             return Ok(commentsDto);
@@ -68,6 +68,18 @@ namespace api.Controllers
             }
 
             return Ok(comment.ToCommnetDto());
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteComment([FromRoute] int id)
+        {
+            var comment = await _commentRepo.DeleteAsync(id);
+            if (comment == null)
+            {
+                return NotFound("No comment to delete!");
+            }
+
+            return NoContent();
         }
     }
 }

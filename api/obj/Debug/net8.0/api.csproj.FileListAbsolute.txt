@@ -148,3 +148,9 @@ D:\C# App\StockMarket\api\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.NewtonsoftJs
 D:\C# App\StockMarket\api\bin\Debug\net8.0\Newtonsoft.Json.dll
 D:\C# App\StockMarket\api\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll
 D:\C# App\StockMarket\api\obj\Debug\net8.0\api.sourcelink.json
+D:\C# App\StockMarket\api\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\C# App\StockMarket\api\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+D:\C# App\StockMarket\api\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+D:\C# App\StockMarket\api\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+D:\C# App\StockMarket\api\bin\Debug\net8.0\Microsoft.Extensions.Identity.Core.dll
+D:\C# App\StockMarket\api\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll

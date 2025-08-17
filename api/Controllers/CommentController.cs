@@ -1,12 +1,14 @@
 using api.DTOs.Comment;
 using api.Interface;
 using api.Mappers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
 {
     [Route("api/comment")]
     [ApiController]
+    [Authorize]
     public class CommentController : ControllerBase
     {
         private readonly ICommentRepository _commentRepo;
@@ -19,7 +21,7 @@ namespace api.Controllers
 
         [HttpGet]
         public async Task<IActionResult> GetAllComment()
-         {
+        {
             var comments = await _commentRepo.GetAllAsync();
             var commentsDto = comments.Select(x => x.ToCommnetDto());
             return Ok(commentsDto);

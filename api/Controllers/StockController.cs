@@ -3,12 +3,14 @@ using api.DTOs.Stock;
 using api.Helpers;
 using api.Interface;
 using api.Mappers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
 {
     [Route("api/stock")]
     [ApiController]
+    [Authorize]
     public class StockController : ControllerBase
     {
         private readonly ApplicationDBContext _context;

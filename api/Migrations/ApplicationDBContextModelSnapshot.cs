@@ -51,13 +51,13 @@ namespace api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "4192c4bd-90a1-4c40-8f3b-c589d5e6b7ac",
+                            Id = "031f239f-6fe1-4a3b-8e01-b7076562cd6b",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "aa428aa6-da02-4da5-81f4-afcf46263b6c",
+                            Id = "9ab81078-6f9e-4c6e-a06e-28763d583cc9",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -260,7 +260,7 @@ namespace api.Migrations
 
                     b.HasIndex("StockId");
 
-                    b.ToTable("Comments");
+                    b.ToTable("Comment");
                 });
 
             modelBuilder.Entity("api.Models.Portfolio", b =>
@@ -275,7 +275,7 @@ namespace api.Migrations
 
                     b.HasIndex("StockId");
 
-                    b.ToTable("portfolios");
+                    b.ToTable("Portfolios");
                 });
 
             modelBuilder.Entity("api.Models.Stock", b =>
